@@ -1,12 +1,13 @@
 FROM node:12
-ARG profile=staging
+ARG profile=production
 ENV NODE_ENV=production
 
+ENV PORT 80
 # Create app directory
-RUN mkdir -p /usr/src/azent-website
+RUN mkdir -p /usr/src/frontend
 
 # Setting working directory. All the path will be relative to WORKDIR
-WORKDIR /usr/src/azent-website
+WORKDIR /usr/src/frontend
 
 # Installing dependencies
 COPY package*.json ./
@@ -22,4 +23,4 @@ RUN APP_ENV=${profile} npm run build
 EXPOSE 3000
 
 # Running the app
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "dev" ]
